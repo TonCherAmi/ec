@@ -17,15 +17,21 @@
 
 PROGNAME := ec
 
-PREFIX := /usr
+PREFIX  := /usr
+CONFDIR := /etc
 
 all:
 	@echo "Run 'make install' to install ${PROGNAME}"
 
 install:
+	@mkdir -p ${DESTDIR}${CONFDIR}
+	@echo installing default configuration in ${DESTDIR}${CONFDIR}
+	@cp -p ${PROGNAME}.conf ${DESTDIR}${CONFDIR}/${PROGNAME}.conf
+	# -- -- -- -- -- -- -- -- -- -- #
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
 	@echo installing executable script in ${DESTDIR}${PREFIX}/bin
 	@cp -p ${PROGNAME} ${DESTDIR}${PREFIX}/bin/${PROGNAME}
 
 uninstall:
+	@rm -f ${DESTDIR}${CONFDIR}/${PROGNAME}.conf
 	@rm -f ${DESTDIR}${PREFIX}/bin/${PROGNAME}
