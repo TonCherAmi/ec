@@ -45,7 +45,7 @@ edit() {
 	eval file='$'$1
 
 	if [ -z "$file" ]; then
-		die "no such config $1"
+		die "no such config '$1'"
 	fi
 
 	"$EDITOR" "$file"
