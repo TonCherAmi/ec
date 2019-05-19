@@ -22,17 +22,17 @@ progname="$(basename $0)"
 config=''
 
 usage() {
-	echo "\
+  echo "\
 Usage: $progname [-vhl] <config>"
 }
 
 version() {
-	echo "$progname: version $version"
+  echo "$progname: version $version"
 }
 
 die() {
-	echo "$progname: $@" >&2
-	exit 1
+  echo "$progname: $@" >&2
+  exit 1
 }
 
 init_config() {
@@ -49,15 +49,15 @@ init_config() {
 }
 
 list() {
-	echo "$(cat "$config" | grep '^\w\+=.\+$' | sed 's/=.\+//g')"
+  echo "$(cat "$config" | grep '^\w\+=.\+$' | sed 's/=.\+//g')"
 }
 
 edit() {
-	source "$config"
+  source "$config"
 
-	eval file='$'$1
+  eval file='$'$1
 
-	"$EDITOR" "$file"
+  "$EDITOR" "$file"
 }
 
 init_config
@@ -65,16 +65,16 @@ init_config
 subcommand="$1"
 
 case "$subcommand" in
-	-h|'')
-		usage
-		;;
-	-v)
-		version
-		;;
-	-l)
-		list
-		;;
-	*)
-		edit "$@"
-		;;
+  -h|'')
+    usage
+    ;;
+  -v)
+    version
+    ;;
+  -l)
+    list
+    ;;
+  *)
+    edit "$@"
+    ;;
 esac
