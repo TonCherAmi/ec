@@ -19,7 +19,7 @@
 version="0.1"
 progname="$(basename $0)"
 
-config="$HOME/.config/ec/config"
+config=''
 
 usage() {
 	echo "\
@@ -35,6 +35,19 @@ die() {
 	exit 1
 }
 
+init_config() {
+  local global_config="/etc/$progname.conf"
+  local user_config="$HOME/.config/$progname/config"
+
+  config="$global_config"
+
+  if [ -f "$user_config" ]; then
+    config="$user_config"
+  elif ! [ -f "$global_config" ]; then
+    die "no config found"
+  fi
+}
+
 list() {
 	echo "$(cat "$config" | grep '^\w\+=.\+$' | sed 's/=.\+//g')"
 }
@@ -44,12 +57,10 @@ edit() {
 
 	eval file='$'$1
 
-	if [ -z "$file" ]; then
-		die "no such config '$1'"
-	fi
-
 	"$EDITOR" "$file"
 }
+
+init_config
 
 subcommand="$1"
 
