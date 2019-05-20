@@ -53,7 +53,7 @@ list() {
 }
 
 edit() {
-  source "$config"
+  . "$config"
 
   eval file='$'$1
 
