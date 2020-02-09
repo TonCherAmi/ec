@@ -1,0 +1,5 @@
+#compdef ec
+
+_alternative "configs:config id:($(ec -l))"
+
+# vim:ft=sh
