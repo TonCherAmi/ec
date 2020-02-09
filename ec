@@ -55,9 +55,17 @@ list() {
 edit() {
   . "$config"
 
-  eval file='$'$1
+  if [ "$1" = '-c' ]; then
+    cmd="$2"
+    name="$3"
+  else
+    cmd="$EDITOR"
+    name="$1"
+  fi
 
-  "$EDITOR" "$file"
+  eval file='$'$name
+
+  $cmd "$file"
 }
 
 init_config
