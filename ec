@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 #
-# Copyright © 2018-2019 Vasili Karaev
+# Copyright © 2018-2020 Vasili Karaev
 # 
 # This file is part of ec.
 #
